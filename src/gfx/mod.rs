@@ -8,12 +8,13 @@ pub mod gl {
 	include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 }
 
-pub type RGB = (f32, f32, f32);
-pub type RGBA = (f32, f32, f32, f32);
+// yes i know that this looks like dfu. trust me; it isn't.
+pub type RGB<T> = (T, T, T);
+pub type RGBA<T> = (T, T, T, T);
 
 #[derive(Debug, Deserialize)]
 struct ViewportConfig {
-	viewport_color: RGB,
+	viewport_color: RGB<f32>,
 }
 
 pub fn init_gfx(context: &mut GameContext) {
@@ -28,7 +29,7 @@ pub fn init_gfx(context: &mut GameContext) {
 	// todo: create and organize resource system
 	let config: ViewportConfig = from_str(include_str!("../../res/terravox/viewport.ron")).expect("Failed to load viewport config");
 
-	// todo: cleanup code
+	// todo: cleanup code, and add color module for converting from GLcolor to RGB
 	unsafe { gl.ClearColor(config.viewport_color.0 / 255.0, config.viewport_color.1 / 255.0, config.viewport_color.2 / 255.0, 1.0) }
 
 	// until window should close, loop
