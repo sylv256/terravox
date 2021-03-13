@@ -5,13 +5,13 @@ use std::collections::HashMap;
 use ron::de::from_bytes;
 
 #[derive(Deserialize, Copy, Clone)]
-pub struct ResourceConfig<'a> {
+pub struct ResourcePackConfig<'a> {
 	name: &'a str,
 }
 
 trait Resource<'a> {
 	fn new(path: &str) -> Self;
-	fn config(&self) -> ResourceConfig<'a>;
+	fn config(&self) -> ResourcePackConfig<'a>;
 	fn name(&self) -> &'a str {
 		self.config().name
 	}
@@ -25,7 +25,7 @@ trait Resource<'a> {
 }
 
 pub struct ResourcePack<'a> {
-	pub config: ResourceConfig<'a>,
+	pub config: ResourcePackConfig<'a>,
 	files: HashMap<&'a str, &'a File>,
 }
 
@@ -38,13 +38,13 @@ impl<'a> Resource<'a> for ResourcePack<'a> {
 			if file.file_name() == "pack.ron" {
 				let ref mut buf = [];
 				File::open(file.path()).unwrap().read(buf);
-				config = Ok(from_bytes::<ResourceConfig>(buf).unwrap());
+				config = Ok(from_bytes::<ResourcePackConfig>(buf).unwrap());
 			}
 		}
 		ResourcePack { config: config.unwrap(), files: HashMap::new() }
 	}
 
-	fn config(&self) -> ResourceConfig<'a> {
+	fn config(&self) -> ResourcePackConfig<'a> {
 		self.config
 	}
 
