@@ -1,0 +1,19 @@
+[package]
+name = "sandgame"
+version = "0.1.0"
+authors = ["TehcJS <tehcdev@gmail.com>"]
+edition = "2018"
+build = "src/build.rs"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+specs = "0.16"
+glfw = "0.41"
+bytemuck = "1"
+libc = "0.2"
+ron = "0.6.4"
+serde = "1"
+
+[build-dependencies]
+gl_generator = "0.14"
