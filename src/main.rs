@@ -4,7 +4,7 @@ use std::sync::mpsc::Receiver;
 
 use glfw::{Action, Key};
 
-use crate::key::{KeyAction, KeyMap};
+use crate::key::{KeyMap};
 
 pub mod gfx;
 pub mod key;
