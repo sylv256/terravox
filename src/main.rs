@@ -1,11 +1,13 @@
-pub mod gfx;
-pub mod key;
-
 extern crate glfw;
 
-use crate::key::{KeyMap, KeyAction};
 use std::sync::mpsc::Receiver;
-use glfw::{Key, Action};
+
+use glfw::{Action, Key};
+
+use crate::key::{KeyAction, KeyMap};
+
+pub mod gfx;
+pub mod key;
 
 pub static GAME_TITLE: &str = "TerraVox";
 pub static NAMESPACE: &str = "terravox";

@@ -1,5 +1,7 @@
-use glfw::{Key, Action};
 use std::collections::HashMap;
+
+use glfw::{Action, Key};
+
 use crate::GameContext;
 
 pub type KeyAction = (Key, Action);

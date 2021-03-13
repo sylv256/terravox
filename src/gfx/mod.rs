@@ -1,12 +1,13 @@
+use glfw::{Action, Context, Key, WindowEvent, WindowMode};
+use ron::de::from_str;
+use serde::Deserialize;
+
+use crate::{GAME_TITLE, GameContext};
+use crate::key::KeyMap;
+
 pub mod gl {
 	include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 }
-
-use glfw::{Action, Context, Key, WindowEvent, WindowMode};
-use crate::{GAME_TITLE, GameContext};
-use crate::key::KeyMap;
-use ron::de::from_str;
-use serde::Deserialize;
 
 pub type RGB = (f32, f32, f32);
 pub type RGBA = (f32, f32, f32, f32);
