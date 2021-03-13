@@ -18,7 +18,7 @@ impl KeyMap {
 	pub fn map(&mut self, (key, action): KeyAction, cb: KeyCallback) {
 		self.map.insert((key, action), cb);
 	}
-	pub fn get(&self, ka: KeyAction) -> &KeyCallback {
-		self.map.get(&ka).expect("No callback set for keymap")
+	pub fn get(&self, ka: KeyAction) -> Option<&KeyCallback> {
+		self.map.get(&ka)
 	}
 }

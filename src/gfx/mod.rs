@@ -1,9 +1,8 @@
-use glfw::{Action, Context, Key, WindowEvent, WindowMode};
+use glfw::{Context, WindowEvent};
 use ron::de::from_str;
 use serde::Deserialize;
 
-use crate::{GAME_TITLE, GameContext};
-use crate::key::KeyMap;
+use crate::{GameContext};
 
 pub mod gl {
 	include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
@@ -46,7 +45,9 @@ pub fn init_gfx(context: &mut GameContext) {
 			match event {
 				WindowEvent::Key(key, _, action, _) => {
 					let cb = context.keymap.get((key, action));
-					cb(key, action, context);
+					if cb.is_some() {
+						cb.unwrap()(key, action, context);
+					}
 				},
 				_ => {},
 			}

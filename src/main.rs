@@ -8,6 +8,7 @@ use crate::key::{KeyMap};
 
 pub mod gfx;
 pub mod key;
+pub mod resources;
 
 pub static GAME_TITLE: &str = "TerraVox";
 pub static NAMESPACE: &str = "terravox";
@@ -43,11 +44,11 @@ fn main() {
 	unload(context);
 }
 
-fn unload(context: &mut GameContext) {
+fn unload(_context: &mut GameContext) {
 	// todo: finish game unload
 }
 
 // key callbacks
-fn exit(key: Key, action: Action, context: &mut GameContext) {
+fn exit(_key: Key, _action: Action, context: &mut GameContext) {
 	context.window.set_should_close(true);
 }
